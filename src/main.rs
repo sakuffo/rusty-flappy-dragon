@@ -8,7 +8,7 @@ enum GameMode {
 
 const SCREEN_WIDTH: i32 = 80;
 const SCREEN_HEIGHT: i32 = 50;
-const FRAME_DURATION: f32 = 75.0;
+const FRAME_DURATION: f32 = 55.0;
 
 struct State {
     player: Player,
@@ -57,6 +57,9 @@ impl State {
         self.player = Player::new(5, 25);
         self.frame_time = 0.0;
         self.mode = GameMode::Playing;
+        self.obstacle = Obstacle::new(SCREEN_WIDTH, 0);
+        self.mode = GameMode::Playing;
+        self.score = 0;
     }
 
     fn dead(&mut self, ctx: &mut BTerm) {
