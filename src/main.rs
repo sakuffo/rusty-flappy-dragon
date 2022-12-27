@@ -45,10 +45,10 @@ impl State {
 
         self.obstacle.render(ctx, self.player.x);
         if self.player.x > self.obstacle.x {
-            self.score +=1;
+            self.score += 1;
             self.obstacle = Obstacle::new(self.player.x + SCREEN_WIDTH, self.score);
         }
-        if self.player.y > SCREEN_HEIGHT || self.obstacle.hit_obstacle(&self.player){
+        if self.player.y > SCREEN_HEIGHT || self.obstacle.hit_obstacle(&self.player) {
             self.mode = GameMode::End;
         }
     }
@@ -80,7 +80,7 @@ impl State {
 
     fn main_menu(&mut self, ctx: &mut BTerm) {
         ctx.cls();
-        ctx.print_centered(5, "Welcome to Flappy Dragon!");
+        ctx.print_centered(5, "Welcome to Ghetto Flappy Dragon!");
         ctx.print_centered(8, "(P) Play Game");
         ctx.print_centered(9, "(Q) Quit Game");
 
@@ -148,14 +148,14 @@ struct Obstacle {
 impl Obstacle {
     fn new(x: i32, score: i32) -> Self {
         let mut random = RandomNumberGenerator::new();
-        Obstacle{
+        Obstacle {
             x,
             gap_y: random.range(10, 40),
-            size: i32::max(2, 20 - score)
+            size: i32::max(2, 20 - score),
         }
     }
 
-    fn render(&mut self, ctx: &mut BTerm, player_x: i32){
+    fn render(&mut self, ctx: &mut BTerm, player_x: i32) {
         let screen_x = self.x - player_x;
         let half_size = self.size / 2;
 
@@ -179,7 +179,7 @@ impl Obstacle {
 
 fn main() -> BError {
     let context = BTermBuilder::simple80x50()
-        .with_title("Flappy Dragon")
+        .with_title("Ghetto Flappy Dragon")
         .build()?;
 
     main_loop(context, State::new())
